@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: rik_proovitöö_postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=rik_proovitöö
+      - POSTGRES_USER=rik_proovitöö
+      - POSTGRES_PASSWORD=rik_proovitöö
+    command: >
+      sh -c "exec postgres -c 'shared_preload_libraries=pg_trgm'"
