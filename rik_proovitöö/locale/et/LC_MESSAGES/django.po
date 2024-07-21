@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: laurileet@gmail.com\n"
+"POT-Creation-Date: 2024-07-21 06:35+0000\n"
+"PO-Revision-Date: 2024-07-21 06:35+0000\n"
+"Last-Translator: Lauri Elias <laurileet@gmail.com>\n"
+"Language-Team: Lauri Elias <laurileet@gmail.com>\n"
+"Language: Estonian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: rik_proovitöö/models.py:68
+msgid "Legal entities cannot be established into the future"
+msgstr ""
+
+#: rik_proovitöö/models.py:90
+msgid "Personal codes must be 11 digits long"
+msgstr "Isikukood peab olema 11-kohaline arv"
+
+#: rik_proovitöö/models.py:93
+msgid "Personal code check digit is incorrect"
+msgstr "Isikukoodi kontrollnumber ei ole õige"
+
+#: rik_proovitöö/models.py:97
+msgid "Business codes must be 7 digits long"
+msgstr "Äriregistri kood peab olema 7-kohaline arv"
+
+#: rik_proovitöö/models.py:99
+msgid "Businesses must have an establishment date specified"
+msgstr "Osaühingutele peab määrama asutamiskuupäeva"
+
+#: rik_proovitöö/models.py:101
+#, python-format
+msgid "Businesses must have at least %(min_capital)s capital"
+msgstr "Osaühingutel peab olema vähemalt %(min_capital)s eurot kapitali"
+
+#: rik_proovitöö/models.py:106
+#, python-format
+msgid ""
+"Total equity holdings (%(total_equity)s) do not match the company's capital "
+"(%(capital)s)"
+msgstr ""
+"Osaluste summa (%(total_equity)s) ei klapi ettevõtte osakapitaliga "
+"(%(capital)s)"
+
+#: rik_proovitöö/models.py:111
+msgid "Legal entity"
+msgstr "Juriidiline isik"
+
+#: rik_proovitöö/models.py:112
+msgid "Legal entities"
+msgstr "Juriidilised isikud"
+
+#: rik_proovitöö/models.py:129
+msgid "Equity"
+msgstr "Osalus"
+
+#: rik_proovitöö/models.py:130
+msgid "Holdings"
+msgstr "Osalused"

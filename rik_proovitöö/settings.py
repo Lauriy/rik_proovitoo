@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rik_proovitöö'
 ]
 
 MIDDLEWARE = [
@@ -71,10 +72,21 @@ WSGI_APPLICATION = 'rik_proovitöö.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "rik_proovitöö",
+        "HOST": "localhost",
+        "PORT": 5432,
+        "USER": "rik_proovitöö",
+        "PASSWORD": "rik_proovitöö",
     }
 }
 
@@ -99,7 +111,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('et', 'Estonian'),
+    ('en', 'English')
+]
+
+LANGUAGE_CODE = 'et'
 
 TIME_ZONE = 'UTC'
 
