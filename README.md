@@ -11,4 +11,4 @@ Activate your venv
     pip install -r requirements.txt -r requirements.test.txt
     pytest
 ```
-Browse the coverage report: file:///home/lauri/PycharmProjects/rik_proovit%C3%B6%C3%B6/htmlcov/index.html
+Browse the coverage report: file:///home/lauri/PycharmProjects/rik_proovitoo/htmlcov/index.html
