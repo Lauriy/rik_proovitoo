@@ -5,8 +5,9 @@ from django.contrib.postgres.indexes import GinIndex
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
 from django.db.models import CharField, Model, DateField, IntegerField, CASCADE, ForeignKey, DateTimeField, \
-    BooleanField, Sum, Index
+    BooleanField, Index, BigIntegerField
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class CreatedUpdatedMixin:
@@ -64,51 +65,58 @@ def _convert_to_birthdate(personal_code: int) -> date:
 
 def no_future_date(value):
     if value > timezone.now().date():
-        raise ValidationError('Legal entities cannot be established into the future')
+        raise ValidationError(_('Legal entities cannot be established into the future'))
 
 
 class LegalEntity(Model, CreatedUpdatedMixin):
     name = CharField(max_length=100, validators=[
         MinLengthValidator(3),
     ])
-    code = IntegerField(validators=[
+    code = BigIntegerField(validators=[
         MinValueValidator(1000000),  # 7 digits is the minimum for OÜ-s
         MaxValueValidator(99999999999),  # 11 digits is the maximum for personal codes
     ])
-    creation_date = DateField(validators=[no_future_date], blank=True)
-    capital = IntegerField(null=True)  # People don't have this
+    creation_date = DateField(validators=[no_future_date], null=True, blank=True)
+    capital = IntegerField(blank=True, null=True)  # People don't have this
     is_person = BooleanField(default=False)
 
     def __str__(self):
         return f'{self.name} ({self.code})'
 
+    # def save(self, *args, **kwargs):
+    #     self.full_clean()
+    #     super().save(*args, **kwargs)
+
     def clean(self):
         super().clean()
         if self.is_person:
             if len(str(self.code)) != 11:
-                raise ValidationError('Personal codes must be 11 digits long')
+                raise ValidationError(_('Personal codes must be 11 digits long'))
             is_check_digit_correct = _calculate_personal_check_digit(self.code) == int(str(self.code)[-1])
             if not is_check_digit_correct:
-                raise ValidationError('Personal code check digit is incorrect')
+                raise ValidationError(_('Personal code check digit is incorrect'))
             self.creation_date = _convert_to_birthdate(self.code)
         else:
             if len(str(self.code)) != 7:
-                raise ValidationError('Business codes must be 7 digits long')
+                raise ValidationError(_('Business codes must be 7 digits long'))
             if not self.creation_date:
-                raise ValidationError('Businesses must have an establishment date specified')
-            if self.capital < settings.LLC_MIN_CAPITAL:
-                raise ValidationError(f'Businesses must have at least {settings.LLC_MIN_CAPITAL} capital')
-            total_equity = self.stakes.aggregate(Sum('value'))['value__sum'] or 0
+                raise ValidationError(_('Businesses must have an establishment date specified'))
+            if not self.capital or self.capital < settings.LLC_MIN_CAPITAL:
+                raise ValidationError(_('Businesses must have at least %(min_capital)s capital') % {
+                    'min_capital': settings.LLC_MIN_CAPITAL})
+            total_equity = sum(equity.value for equity in self.stakes.all())
             if total_equity != self.capital:
                 raise ValidationError(
-                    f'Total equity holdings ({total_equity}) do not match the company\'s capital ({self.capital})')
+                    _('Total equity holdings (%(total_equity)s) do not match the company\'s capital (%(capital)s)') % {
+                        'total_equity': total_equity, 'capital': self.capital}
+                )
 
     class Meta:
-        verbose_name = 'Legal entity'
-        verbose_name_plural = 'Legal entities'
+        verbose_name = _('Legal entity')
+        verbose_name_plural = _('Legal entities')
         indexes = [
             Index(fields=['code']),  # Regular index for URL traversal
-            GinIndex(fields=['code', 'name']),  # GinIndex for search
+            GinIndex(fields=['name'], name='gin_trgm_idx', opclasses=['gin_trgm_ops']),  # GinIndex for search
         ]
 
 
@@ -122,6 +130,6 @@ class Equity(Model, CreatedUpdatedMixin):
         return f'{self.stakeholder.name} - {self.company.name}'
 
     class Meta:
-        verbose_name = 'Equity'
-        verbose_name_plural = 'Holdings'
+        verbose_name = _('Equity')
+        verbose_name_plural = _('Holdings')
         unique_together = ('stakeholder', 'company')
