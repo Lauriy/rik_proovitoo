@@ -1,7 +1,9 @@
 /.venv/
 /.idea/
 /htmlcov/
+/rik_proovitöö_tests/htmlcov/
 
 /.coverage
 /rik_proovitöö_tests/.coverage
 /coverage.xml
+/rik_proovitöö_tests/coverage.xml
