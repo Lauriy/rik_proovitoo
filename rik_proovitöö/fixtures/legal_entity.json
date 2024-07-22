@@ -1,0 +1,35 @@
+[
+  {
+    "model": "rik_proovitöö.legalentity",
+    "pk": 1,
+    "fields": {
+      "name": "Lauri Elias",
+      "code": 39004020251,
+      "creation_date": "1990-04-02",
+      "capital": null,
+      "is_person": true
+    }
+  },
+  {
+    "model": "rik_proovitöö.legalentity",
+    "pk": 2,
+    "fields": {
+      "name": "Indoorsman OÜ",
+      "code": 1292523,
+      "creation_date": "2015-10-05",
+      "capital": 2500,
+      "is_person": false
+    }
+  },
+  {
+    "model": "rik_proovitöö.legalentity",
+    "pk": 3,
+    "fields": {
+      "name": "Evilcorp",
+      "code": 6666666,
+      "creation_date": "2024-07-22",
+      "capital": 10000,
+      "is_person": false
+    }
+  }
+]

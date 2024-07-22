@@ -1,0 +1,20 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$r64NngaV2EbAU0cc4Qz3cS$Q56AvMfxooZ0hSfud37eEMm3KEFGGnsC//1QUY9wGJo=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "lauri",
+      "first_name": "Lauri",
+      "last_name": "Elias",
+      "email": "laurileet@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-07-22T08:15:54.225Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "model": "rik_proovitöö.equity",
+    "pk": 1,
+    "fields": {
+      "stakeholder": 1,
+      "company": 2,
+      "value": 2500,
+      "is_founding": true
+    }
+  },
+  {
+    "model": "rik_proovitöö.equity",
+    "pk": 2,
+    "fields": {
+      "stakeholder": 1,
+      "company": 3,
+      "value": 5001,
+      "is_founding": true
+    }
+  },
+  {
+    "model": "rik_proovitöö.equity",
+    "pk": 3,
+    "fields": {
+      "stakeholder": 2,
+      "company": 3,
+      "value": 4999,
+      "is_founding": false
+    }
+  }
+]
