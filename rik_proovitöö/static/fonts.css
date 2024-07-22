@@ -1,0 +1,32 @@
+@font-face {
+    font-display: swap;
+    font-family: interface;
+    font-style: normal;
+    font-weight: normal;
+    src: url("interface.woff2") format("woff2"),
+    url("interface.woff") format("woff");
+}
+
+[class*="icon_"]:not(.iconAfter):before,
+[class*="icon_"].iconAfter:after {
+    content: var(--iconChar);
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-family: interface;
+    font-weight: normal;
+    line-height: 1;
+    margin-right: 0.25em;
+}
+
+.icon_linkedIn {
+    --iconChar: "\F08C";
+}
+
+.icon_medium {
+    --iconChar: "\F23A";
+}
+
+.icon_github {
+    --iconChar: "\E000";
+}

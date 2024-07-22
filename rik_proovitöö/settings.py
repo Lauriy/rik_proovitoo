@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rik_proovitöö'
+    'django.contrib.humanize',
+    # 'debug_toolbar',
+    'rik_proovitöö',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +49,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if 'debug_toolbar' in INSTALLED_APPS:
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'rik_proovitöö.urls'
 
@@ -129,9 +134,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    Path(BASE_DIR) / 'rik_proovitöö/static',
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LLC_MIN_CAPITAL = 2500
+
+SEARCH_RESULTS_INITIAL_LIMIT = 3
+SEARCH_RESULTS_MAX_LIMIT = 100
