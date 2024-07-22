@@ -1,20 +1,19 @@
 {% load static i18n %}
-<!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}">
-<head>
+<!DOCTYPE html><html lang="{{ LANGUAGE_CODE }}"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="{% trans 'Homework assignment for a RIK job application' %}">
 
-    <link rel="preload" as="style" href="{% static 'fonts.css' %}" media="screen,print">
+    <link rel="preload" as="style" href="{% static 'fonts.css' %}" media="screen">
     <link rel="preload" as="style" href="{% static 'style.screen.css' %}" media="screen">
+    <link rel="preload" as="font" href="{% static 'interface.woff2' %}" media="screen" crossorigin>
 
-    <link rel="stylesheet" href="{% static 'fonts.css' %}" media="screen,print">
+    <link rel="stylesheet" href="{% static 'fonts.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'style.screen.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'style.print.css' %}" media="print">
 
     <title>{% trans 'Homework' %}</title>
-</head>
-<body>
+</head><body>
 <header>
     <a href="/">
         <h1>{% trans 'Homepage' %}</h1>
@@ -39,7 +38,7 @@
 <footer>
     <ul>
         <li><a class="icon_linkedIn" target="_blank" href="https://www.linkedin.com/in/lauri-elias/">LinkedIn</a></li>
-        <li><a class="icon_github" target="_blank" href="https://github.com/Lauriy">GitHub</a>
+        <li><a class="icon_github" target="_blank" href="https://github.com/Lauriy/rik_proovitoo">GitHub</a>
         <li><a class="icon_medium" target="_blank" href="https://lauri-elias.medium.com/">Medium</a></li>
     </ul>
 </footer>
