@@ -1,0 +1,47 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="{% trans 'Homework assignment for a RIK job application' %}">
+
+    <link rel="preload" as="style" href="{% static 'fonts.css' %}" media="screen,print">
+    <link rel="preload" as="style" href="{% static 'style.screen.css' %}" media="screen">
+
+    <link rel="stylesheet" href="{% static 'fonts.css' %}" media="screen,print">
+    <link rel="stylesheet" href="{% static 'style.screen.css' %}" media="screen">
+
+    <title>{% trans 'Homework' %}</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <h1>{% trans 'Homepage' %}</h1>
+    </a>
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <select name="language">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% for lang in LANGUAGES %}
+                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                    {{ lang.1 }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">{% trans 'Change language' %}</button>
+    </form>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <ul>
+        <li><a class="icon_linkedIn" target="_blank" href="https://www.linkedin.com/in/lauri-elias/">LinkedIn</a></li>
+        <li><a class="icon_github" target="_blank" href="https://github.com/Lauriy">GitHub</a>
+        <li><a class="icon_medium" target="_blank" href="https://lauri-elias.medium.com/">Medium</a></li>
+    </ul>
+</footer>
+</body>
+</html>

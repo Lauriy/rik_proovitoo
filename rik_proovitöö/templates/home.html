@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+    <h2>{% trans 'Legal entity lookup' %}</h2>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">{% trans 'Search' %}</button>
+    </form>
+    <h3>{% trans 'Search results' %}</h3>
+    <h4>{% trans 'People' %}</h4>
+    <ul>
+        {% for entity in people_results %}
+            <li><a href="{% url 'legal_entity_detail' entity.code %}">{{ entity.name }} ({{ entity.code }})</a></li>
+        {% empty %}
+            <li>{% trans 'No results found' %}</li>
+        {% endfor %}
+    </ul>
+    {% if people_results|length >= limit and limit < max_limit %}
+        <a href="?query={{ form.query.value }}&limit={{ limit|add:limit }}">{% trans 'Load more people' %}</a>
+    {% endif %}
+
+    <h4>{% trans 'Companies' %}</h4>
+    <ul>
+        {% for entity in company_results %}
+            <li><a href="{% url 'legal_entity_detail' entity.code %}">{{ entity.name }} ({{ entity.code }})</a></li>
+        {% empty %}
+            <li>{% trans 'No results found' %}</li>
+        {% endfor %}
+    </ul>
+    {% if company_results|length >= limit and limit < max_limit %}
+        <a href="?query={{ form.query.value }}&limit={{ limit|add:limit }}">{% trans 'Load more companies' %}</a>
+    {% endif %}
+{% endblock %}

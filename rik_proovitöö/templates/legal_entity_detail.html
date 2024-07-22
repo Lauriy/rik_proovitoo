@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load i18n humanize custom_filters %}
+{% block content %}
+    <h2>{{ legal_entity.name }}</h2>
+    <p>{% trans 'Code' %}: {{ legal_entity.code }}</p>
+    {% if legal_entity.is_person %}
+        <p>{% trans 'Birth date' %}: {{ legal_entity.creation_date }} ({{ legal_entity.creation_date|timesince }})</p>
+        {% if legal_entity.holdings.exists %}
+            <h3>{% trans 'Equities' %}</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>{% trans 'Company name' %}</th>
+                    <th>{% trans 'Company code' %}</th>
+                    <th>{% trans 'Equity value' %}</th>
+                    <th>{% trans 'Percentage' %}</th>
+                    <th>{% trans 'Is founder' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for stake in legal_entity.holdings.all %}
+                    <tr>
+                        <td>{{ stake.company.name }}</td>
+                        <td>
+                            <a href="{% url 'legal_entity_detail' stake.company.code %}">{{ stake.company.code }}</a>
+                        </td>
+                        <td>{{ stake.value }}</td>
+                        <td>{{ stake.value|div:stake.company.capital|multiply:100|floatformat:2 }}%</td>
+                        <td>{{ stake.is_founding|yesno:_('Yes,No') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% else %}
+        <p>{% trans 'Creation date' %}: {{ legal_entity.creation_date }}
+            ({{ legal_entity.creation_date|timesince }})</p>
+        {% if legal_entity.capital %}
+            <p>{% trans 'Capital' %}: {{ legal_entity.capital }}</p>
+        {% endif %}
+    {% endif %}
+    {% if legal_entity.stakes.exists %}
+        <h3>{% trans 'Equities' %}</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>{% trans 'Name' %}</th>
+                <th>{% trans 'Code' %}</th>
+                <th>{% trans 'Equity value' %}</th>
+                <th>{% trans 'Percentage' %}</th>
+                <th>{% trans 'Is founder' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for owner in legal_entity.stakes.all %}
+                <tr>
+                    <td>{{ owner.stakeholder.name }}</td>
+                    <td>
+                        <a href="{% url 'legal_entity_detail' owner.stakeholder.code %}">{{ owner.stakeholder.code }}</a>
+                    </td>
+                    <td>{{ owner.value }}</td>
+                    <td>{{ owner.value|div:legal_entity.capital|multiply:100|floatformat:2 }}%</td>
+                    <td>{{ owner.is_founding|yesno:_('Yes,No') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
