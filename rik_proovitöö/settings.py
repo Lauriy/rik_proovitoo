@@ -74,7 +74,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "rik_proovitöö",
-        "HOST": "postgres",
+        # TODO: Figure out using 'postgres' here vs 'localhost' in all contexts (test, local, prod)
+        "HOST": "localhost",
         "PORT": 5432,
         "USER": "rik_proovitöö",
         "PASSWORD": "rik_proovitöö",
