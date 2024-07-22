@@ -11,3 +11,16 @@ services:
       - POSTGRES_INITDB_ARGS=--data-checksums
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
+  rik_proovitoo:
+    build: .
+    image: laurielias/rik_proovitoo:latest
+    container_name: rik_proovitoo
+    # ports:
+    #   - 8000:8000 # Django
+    # volumes:
+    #   - .:/home/docker/rik_proovitöö
+    # entrypoint: 'docker-entrypoint-dev.sh'
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - postgres

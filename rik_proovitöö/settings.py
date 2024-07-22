@@ -46,8 +46,6 @@ ROOT_URLCONF = 'rik_proovitöö.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +74,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "rik_proovitöö",
-        "HOST": "localhost",
+        "HOST": "postgres",
         "PORT": 5432,
         "USER": "rik_proovitöö",
         "PASSWORD": "rik_proovitöö",
@@ -121,6 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR / 'static_collected'
 
 STATICFILES_DIRS = [
     Path(BASE_DIR) / 'rik_proovitöö/static',

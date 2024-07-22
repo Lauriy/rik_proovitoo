@@ -1,0 +1,41 @@
+upstream django_rik_proovitoo {
+    server unix:///home/rik/rik_proovitöö/run/app.sock;
+}
+
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	server_name rik.indoorsman.ee;
+
+	ssl_certificate /etc/letsencrypt/live/rik.indoorsman.ee/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/rik.indoorsman.ee/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/rik.indoorsman.ee/chain.pem;
+
+	include nginxconfig.io/security.conf;
+
+	location /static/ {
+        alias /home/rik/rik_proovitöö/static_collected/;
+    }
+
+	location / {
+		uwsgi_pass django_rik_proovitoo;
+
+		include uwsgi_params;
+	}
+
+	include nginxconfig.io/general.conf;
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name .rik.indoorsman.ee;
+
+	include nginxconfig.io/letsencrypt.conf;
+
+	location / {
+		return 301 https://rik.indoorsman.ee$request_uri;
+	}
+}
