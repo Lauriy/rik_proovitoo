@@ -21,8 +21,12 @@ def homepage(request):
             (Q(name__icontains=query) | Q(code__icontains=query)), is_person=True
         )[:limit]
         company_results = LegalEntity.objects.filter(
-            (Q(name__icontains=query) | Q(code__icontains=query)), is_person=False
-        )[:limit]
+            Q(name__icontains=query) |
+            Q(code__icontains=query) |
+            Q(stakes__stakeholder__name__icontains=query) |
+            Q(stakes__stakeholder__code__icontains=query),
+            is_person=False
+        ).distinct()[:limit]
 
     return TemplateResponse(request, 'home.html', {
         'form': form,
