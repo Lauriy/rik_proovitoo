@@ -15,6 +15,13 @@ class LegalEntityForm(ModelForm):
     class Meta:
         model = LegalEntity
         fields = ['name', 'code', 'creation_date', 'capital', 'is_person']
+        labels = {
+            'name': _('Name'),
+            'code': _('Code'),
+            'creation_date': _('Creation date'),
+            'capital': _('Capital'),
+            'is_person': _('Is person'),
+        }
 
     def __init__(self, *args, **kwargs):
         exclude_is_person = kwargs.pop('exclude_is_person', False)
@@ -62,12 +69,22 @@ class EquityForm(ModelForm):
     class Meta:
         model = Equity
         fields = ('stakeholder', 'value', 'is_founding')
+        labels = {
+            'stakeholder': _('Stakeholder'),
+            'value': _('Value'),
+            'is_founding': _('Is founding'),
+        }
 
 
 class PublicEquityForm(ModelForm):
     class Meta:
         model = Equity
         exclude = ('is_founding',)
+        labels = {
+            'stakeholder': _('Stakeholder'),
+            'value': _('Value'),
+            'is_founding': _('Is founding'),
+        }
 
 
 AdminEquityFormSet = inlineformset_factory(

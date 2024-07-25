@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-22 10:43+0000\n"
+"POT-Creation-Date: 2024-07-25 16:33+0000\n"
 "PO-Revision-Date: 2024-07-21 06:35+0000\n"
 "Last-Translator: Lauri Elias <laurileet@gmail.com>\n"
 "Language-Team: Lauri Elias <laurileet@gmail.com>\n"
@@ -18,28 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: rik_proovitöö/admin.py:86
-msgid "Personal codes must be 11 digits long"
-msgstr "Isikukood peab olema 11-kohaline arv"
-
-#: rik_proovitöö/admin.py:89
-msgid "Personal code check digit is incorrect"
-msgstr "Isikukoodi kontrollnumber ei ole õige"
-
-#: rik_proovitöö/admin.py:94
-msgid "Business codes must be 7 digits long"
-msgstr "Äriregistri kood peab olema 7-kohaline arv"
-
-#: rik_proovitöö/admin.py:96
-msgid "Businesses must have an establishment date specified"
-msgstr "Osaühingutele peab määrama asutamiskuupäeva"
-
-#: rik_proovitöö/admin.py:98
-#, python-format
-msgid "Businesses must have at least %(min_capital)s capital"
-msgstr "Osaühingutel peab olema vähemalt %(min_capital)s eurot kapitali"
-
-#: rik_proovitöö/admin.py:138
+#: rik_proovitöö/admin.py:46 rik_proovitöö/forms.py:62
 #, python-format
 msgid ""
 "Total equity holdings (%(total_equity)s) do not match the company's capital "
@@ -48,9 +27,67 @@ msgstr ""
 "Osaluste summa (%(total_equity)s) ei klapi ettevõtte osakapitaliga "
 "(%(capital)s)"
 
-#: rik_proovitöö/forms.py:6
+#: rik_proovitöö/forms.py:11
 msgid "Query"
 msgstr "Päring"
+
+#: rik_proovitöö/forms.py:19
+#: rik_proovitöö/templates/legal_entity_detail.html:47
+msgid "Name"
+msgstr "Nimi"
+
+#: rik_proovitöö/forms.py:20
+#: rik_proovitöö/templates/legal_entity_detail.html:5
+#: rik_proovitöö/templates/legal_entity_detail.html:48
+msgid "Code"
+msgstr "Kood"
+
+#: rik_proovitöö/forms.py:21
+#: rik_proovitöö/templates/legal_entity_detail.html:36
+msgid "Creation date"
+msgstr "Asutamise kuupäev"
+
+#: rik_proovitöö/forms.py:22
+#: rik_proovitöö/templates/legal_entity_detail.html:39
+msgid "Capital"
+msgstr "Kapital"
+
+#: rik_proovitöö/forms.py:23
+msgid "Is person"
+msgstr "On inimene"
+
+#: rik_proovitöö/forms.py:44
+msgid "Personal codes must be 11 digits long"
+msgstr "Isikukood peab olema 11-kohaline arv"
+
+#: rik_proovitöö/forms.py:47
+msgid "Personal code check digit is incorrect"
+msgstr "Isikukoodi kontrollnumber ei ole õige"
+
+#: rik_proovitöö/forms.py:52
+msgid "Business codes must be 7 digits long"
+msgstr "Äriregistri kood peab olema 7-kohaline arv"
+
+#: rik_proovitöö/forms.py:54
+msgid "Businesses must have an establishment date specified"
+msgstr "Osaühingutele peab määrama asutamiskuupäeva"
+
+#: rik_proovitöö/forms.py:56
+#, python-format
+msgid "Businesses must have at least %(min_capital)s capital"
+msgstr "Osaühingutel peab olema vähemalt %(min_capital)s eurot kapitali"
+
+#: rik_proovitöö/forms.py:73
+msgid "Stakeholder"
+msgstr "Osanik"
+
+#: rik_proovitöö/forms.py:74
+msgid "Value"
+msgstr "Väärtus"
+
+#: rik_proovitöö/forms.py:75
+msgid "Is founding"
+msgstr "On asutav"
 
 #: rik_proovitöö/models.py:17
 msgid "Legal entities cannot be established into the future"
@@ -72,21 +109,44 @@ msgstr "Osalus"
 msgid "Holdings"
 msgstr "Osalused"
 
-#: rik_proovitöö/templates/base.html:7
+#: rik_proovitöö/templates/base.html:5
 msgid "Homework assignment for a RIK job application"
 msgstr "RIK'i tööpakkumise kodune ülesanne"
 
-#: rik_proovitöö/templates/base.html:15
+#: rik_proovitöö/templates/base.html:16
 msgid "Homework"
 msgstr "Kodutöö"
 
-#: rik_proovitöö/templates/base.html:20
+#: rik_proovitöö/templates/base.html:22
 msgid "Homepage"
 msgstr "Avaleht"
 
-#: rik_proovitöö/templates/base.html:33
+#: rik_proovitöö/templates/base.html:27
+msgid "Establish an LLC"
+msgstr "Asuta osaühing"
+
+#: rik_proovitöö/templates/base.html:43
 msgid "Change language"
 msgstr "Muuda keelt"
+
+#: rik_proovitöö/templates/establish_llc.html:7
+#: rik_proovitöö/templates/establish_llc.html:58
+msgid "Establish new LLC"
+msgstr "Asuta uus osaühing"
+
+#: rik_proovitöö/templates/establish_llc.html:24
+msgid "LLC Details"
+msgstr "Osaühingu andmed"
+
+#: rik_proovitöö/templates/establish_llc.html:37
+#: rik_proovitöö/templates/legal_entity_detail.html:9
+#: rik_proovitöö/templates/legal_entity_detail.html:43
+msgid "Equities"
+msgstr "Osalused"
+
+#: rik_proovitöö/templates/establish_llc.html:57
+msgid "Add equity"
+msgstr "Lisa osalus"
 
 #: rik_proovitöö/templates/home.html:4
 msgid "Legal entity lookup"
@@ -121,19 +181,9 @@ msgstr "Ettevõtted"
 msgid "Load more companies"
 msgstr "Laadi rohkem ettevõtteid"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:5
-#: rik_proovitöö/templates/legal_entity_detail.html:48
-msgid "Code"
-msgstr "Kood"
-
 #: rik_proovitöö/templates/legal_entity_detail.html:7
 msgid "Birth date"
 msgstr "Sünnikuupäev"
-
-#: rik_proovitöö/templates/legal_entity_detail.html:9
-#: rik_proovitöö/templates/legal_entity_detail.html:43
-msgid "Equities"
-msgstr "Osalused"
 
 #: rik_proovitöö/templates/legal_entity_detail.html:13
 msgid "Company name"
@@ -162,15 +212,3 @@ msgstr "On asutaja"
 #: rik_proovitöö/templates/legal_entity_detail.html:63
 msgid "Yes,No"
 msgstr "Jah,Ei"
-
-#: rik_proovitöö/templates/legal_entity_detail.html:36
-msgid "Creation date"
-msgstr "Asutamise kuupäev"
-
-#: rik_proovitöö/templates/legal_entity_detail.html:39
-msgid "Capital"
-msgstr "Kapital"
-
-#: rik_proovitöö/templates/legal_entity_detail.html:47
-msgid "Name"
-msgstr "Nimi"
