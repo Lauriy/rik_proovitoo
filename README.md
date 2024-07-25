@@ -16,6 +16,14 @@ Activate your venv
   python manage.py loaddata rik_proovitöö/fixtures/equity.json
 ```
 
+## Local instance
+
+Activate your venv
+```bash
+    docker compose up -d postgres
+    python manage.py runserver
+```
+
 ## Django admin
 
 Visit /admin
