@@ -27,3 +27,15 @@ header {
 header form {
     margin-left: auto;
 }
+
+header a {
+    margin-right: 1rem;
+}
+
+.equity-form p {
+    color: red;
+}
+
+#llc-form p {
+    color: red;
+}

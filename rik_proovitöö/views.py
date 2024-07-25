@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
-from django.utils import translation
 
-from .forms import LegalEntitySearchForm
+from .admin import LegalEntityForm
+from .forms import LegalEntitySearchForm, PublicEquityFormSet
 from .models import LegalEntity
 
 
@@ -43,11 +42,23 @@ def legal_entity_detail(request, code: int):
     })
 
 
-def set_language(request):
+def establish_llc(request):
     if request.method == 'POST':
-        lang_code = request.POST.get('language')
-        if lang_code and lang_code in dict(settings.LANGUAGES).keys():
-            translation.activate(lang_code)
-            # request.session[translation.LANGUAGE_SESSION_KEY] = lang_code  # Use the correct import
+        form = LegalEntityForm(request.POST, exclude_is_person=True)
+        formset = PublicEquityFormSet(request.POST, instance=LegalEntity())
+        form.equity_formset = formset
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        if form.is_valid() and formset.is_valid():
+            legal_entity = form.save(commit=False)
+            if formset.is_valid():
+                formset.instance = legal_entity
+                legal_entity.save()
+                formset.save()
+
+                return redirect('legal_entity_detail', code=legal_entity.code)
+    else:
+        form = LegalEntityForm(exclude_is_person=True)
+        formset = PublicEquityFormSet(instance=LegalEntity())
+        form.equity_formset = formset
+
+    return TemplateResponse(request, 'establish_llc.html', {'form': form, 'formset': formset})

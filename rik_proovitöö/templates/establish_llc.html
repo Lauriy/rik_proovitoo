@@ -1,2 +1,60 @@
 {% extends 'base.html' %}
-{% block content %}{% endblock %}
+{% load i18n static %}
+{% block extra_static %}
+    <script src="{% static 'scripts-v1.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <h1>{% trans 'Establish new LLC' %}</h1>
+    <form method="post" id="llc-form">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div>
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if formset.non_form_errors %}
+            <div>
+                {% for error in formset.non_form_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h2>{% trans 'LLC Details' %}</h2>
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small>{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <h2>{% trans 'Equities' %}</h2>
+        {{ formset.management_form }}
+        <div id="equity-forms">
+            {% for form in formset %}
+                <div class="equity-form">
+                    {% for field in form.visible_fields %}
+                        <div>
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small>{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-equity">{% trans 'Add Equity' %}</button>
+        <button type="submit">{% trans 'Establish new LLC' %}</button>
+    </form>
+{% endblock %}

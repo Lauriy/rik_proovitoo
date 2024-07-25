@@ -3,8 +3,8 @@
     font-family: interface;
     font-style: normal;
     font-weight: normal;
-    src: url("interface.woff2") format("woff2"),
-    url("interface.woff") format("woff");
+    src: url("interface-v1.woff2") format("woff2"),
+    url("interface-v1.woff") format("woff");
 }
 
 [class*="icon_"]:not(.iconAfter):before,
