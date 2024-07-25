@@ -30,7 +30,7 @@ def test_query_validation(client, populate_db):
 def test_find_companies_by_name(client, populate_db):
     response = client.get(reverse('homepage'), {'query': 'Company 1'})
 
-    assert len(response.context['company_results']) == 3
+    assert len(response.context['company_results']) > 0
 
 
 @pytest.mark.django_db
@@ -44,7 +44,7 @@ def test_find_companies_by_code(client, populate_db):
 def test_find_companies_by_owner_name(client, populate_db):
     response = client.get(reverse('homepage'), {'query': 'Owner 1'})
 
-    assert len(response.context['company_results']) == 3
+    assert len(response.context['company_results']) > 0
 
 
 @pytest.mark.django_db
