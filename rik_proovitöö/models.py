@@ -24,7 +24,7 @@ class LegalEntity(Model, CreatedUpdatedMixin):
     code = BigIntegerField(validators=[
         MinValueValidator(1000000),  # 7 digits is the minimum for OÜ-s
         MaxValueValidator(99999999999),  # 11 digits is the maximum for personal codes
-    ])
+    ], unique=True)
     creation_date = DateField(validators=[no_future_date], null=True, blank=True)
     capital = IntegerField(blank=True, null=True)  # People don't have this
     is_person = BooleanField(default=False)
