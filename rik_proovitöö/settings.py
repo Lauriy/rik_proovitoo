@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -75,7 +76,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "rik_proovitöö",
-        "HOST": "postgres",
+        "HOST": os.getenv("POSTGRES_HOST", "postgres"),
         "PORT": 5432,
         "USER": "rik_proovitöö",
         "PASSWORD": "rik_proovitöö",
