@@ -1,26 +1,32 @@
-FROM python:3.12
+FROM python:3.12-slim AS base
 
 LABEL maintainer='Lauri Elias <laurileet@gmail.com>'
 
-RUN apt-get update && apt-get install uwsgi -y
-
 WORKDIR /home/docker/rik_proovitöö
 
-RUN mkdir -p /home/docker/rik_proovitöö/run && chmod -R 755 /home/docker/rik_proovitöö/run
-
 COPY requirements.txt ./
+RUN pip install -r requirements.txt
 
-RUN pip install -r requirements.txt && pip install uwsgi
-
-COPY manage.py uwsgi.ini ./
-
-COPY docker-entrypoint.sh /usr/bin/
+COPY manage.py ./
 
 COPY rik_proovitöö ./rik_proovitöö
 
+COPY docker-entrypoint.sh /usr/bin/
+
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 
-# EXPOSE 8000
-
-# No single quotes!
 ENTRYPOINT ["docker-entrypoint.sh"]
+
+FROM base AS development
+
+COPY requirements.test.txt pytest.ini ./
+
+COPY rik_proovitöö_tests ./rik_proovitöö_tests
+
+RUN pip install -r requirements.test.txt
+
+FROM base AS production
+
+RUN apt-get update && apt-get install uwsgi -y
+
+COPY uwsgi.ini ./

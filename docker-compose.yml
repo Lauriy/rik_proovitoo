@@ -11,16 +11,46 @@ services:
       - POSTGRES_INITDB_ARGS=--data-checksums
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
-  rik_proovitoo:
-    build: .
-    image: laurielias/rik_proovitoo:latest
-    container_name: rik_proovitoo
-    # ports:
-    #   - 8000:8000 # Django
-    # volumes:
-    #   - .:/home/docker/rik_proovitöö
-    # entrypoint: 'docker-entrypoint-dev.sh'
+
+  rik_proovitoo_dev:
+    build:
+      context: .
+      target: development
+    image: laurielias/rik_proovitoo:dev
+    container_name: rik_proovitoo_dev
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/home/docker/rik_proovitöö
     environment:
       - PYTHONUNBUFFERED=1
+      - DJANGO_ENV=development
+    depends_on:
+      - postgres
+
+  rik_proovitoo_test:
+    build:
+      context: .
+      target: development
+    image: laurielias/rik_proovitoo:test
+    container_name: rik_proovitoo_test
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DJANGO_ENV=test
+    depends_on:
+      - postgres
+    command: pytest
+
+  rik_proovitoo_prod:
+    build:
+      context: .
+      target: production
+    image: laurielias/rik_proovitoo:latest
+    container_name: rik_proovitoo_prod
+    volumes:
+      - /home/rik/rik_proovitöö/run:/home/docker/rik_proovitöö/run
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DJANGO_ENV=production
     depends_on:
       - postgres

@@ -7,20 +7,22 @@
 
 https://rik.indoorsman.ee
 
-## Load fixtures
-Activate your venv
-```bash
-  docker compose up -d postgres
-  python manage.py loaddata rik_proovitöö/fixtures/superuser.json
-  python manage.py loaddata rik_proovitöö/fixtures/legal_entity.json
-  python manage.py loaddata rik_proovitöö/fixtures/equity.json
-```
+## Local instance via docker-compose
 
-## Local instance
+```bash
+    docker compose up -d postgres rik_proovitoo_dev
+```
+Visit localhost:8000
+
+## Local instance running natively
 
 Activate your venv
 ```bash
     docker compose up -d postgres
+    python manage.py migrate
+    python manage.py loaddata rik_proovitöö/fixtures/superuser.json
+    python manage.py loaddata rik_proovitöö/fixtures/legal_entity.json
+    python manage.py loaddata rik_proovitöö/fixtures/equity.json
     python manage.py runserver
 ```
 
@@ -32,6 +34,8 @@ Use lauri:mellon after loading fixtures for superuser access.
 
 ## Local TDD:
 
+`127.0.0.1 postgres` is the hostsfile makes for an easier life
+
 Activate your venv
 ```bash
     docker compose up -d postgres
@@ -40,8 +44,13 @@ Activate your venv
 ```
 Browse the coverage report: file:///home/lauri/PycharmProjects/rik_proovitoo/htmlcov/index.html
 
+## Running tests inside a Docker container
+
+```bash
+    docker compose up -d postgres rik_proovitoo_test
+```
+
 ## Build Docker image
 ```bash
     docker build -t laurielias/rik_proovitoo:latest .
 ```
-`127.0.0.1 postgres` is the hostsfile makes for an easier life
