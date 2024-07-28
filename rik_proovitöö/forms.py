@@ -79,11 +79,10 @@ class EquityForm(ModelForm):
 class PublicEquityForm(ModelForm):
     class Meta:
         model = Equity
-        exclude = ('is_founding',)
+        fields = ('stakeholder', 'value', 'id')
         labels = {
             'stakeholder': _('Stakeholder'),
             'value': _('Value'),
-            'is_founding': _('Is founding'),
         }
 
 
@@ -102,7 +101,7 @@ PublicEquityFormSet = inlineformset_factory(
     Equity,
     form=PublicEquityForm,
     fk_name='company',
-    fields=('stakeholder', 'value'),
+    fields=('id', 'stakeholder', 'value'),
     extra=1,
-    can_delete=False
+    can_delete=True
 )

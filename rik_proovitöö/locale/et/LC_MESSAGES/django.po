@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-28 23:57+0300\n"
+"POT-Creation-Date: 2024-07-29 00:31+0300\n"
 "PO-Revision-Date: 2024-07-21 06:35+0000\n"
 "Last-Translator: Lauri Elias <laurileet@gmail.com>\n"
 "Language-Team: Lauri Elias <laurileet@gmail.com>\n"
@@ -85,7 +85,7 @@ msgstr "Osanik"
 msgid "Value"
 msgstr "Väärtus"
 
-#: .\rik_proovitöö\forms.py:75 .\rik_proovitöö\forms.py:86
+#: .\rik_proovitöö\forms.py:75
 msgid "Is founding"
 msgstr "On asutav"
 
@@ -103,11 +103,11 @@ msgstr "Juriidilisi isikuid ei saa registreerida tulevikku"
 
 #: .\rik_proovitöö\models.py:24
 msgid "name"
-msgstr ""
+msgstr "nimi"
 
 #: .\rik_proovitöö\models.py:32
 msgid "code"
-msgstr ""
+msgstr "kood"
 
 #: .\rik_proovitöö\models.py:38
 msgid "creation date"
@@ -173,24 +173,35 @@ msgstr "Asuta osaühing"
 msgid "Change language"
 msgstr "Muuda keelt"
 
-#: .\rik_proovitöö\templates\establish_llc.html.py:7
-#: .\rik_proovitöö\templates\establish_llc.html.py:58
-msgid "Establish new LLC"
-msgstr "Asuta uus osaühing"
+#: .\rik_proovitöö\templates\edit_llc.html.py:7
+msgid "Edit LLC"
+msgstr "Muuda osaühingut"
 
+#: .\rik_proovitöö\templates\edit_llc.html.py:24
 #: .\rik_proovitöö\templates\establish_llc.html.py:24
 msgid "LLC Details"
 msgstr "Osaühingu andmed"
 
+#: .\rik_proovitöö\templates\edit_llc.html.py:37
 #: .\rik_proovitöö\templates\establish_llc.html.py:37
 #: .\rik_proovitöö\templates\legal_entity_detail.html.py:9
 #: .\rik_proovitöö\templates\legal_entity_detail.html.py:43
 msgid "Equities"
 msgstr "Osalused"
 
+#: .\rik_proovitöö\templates\edit_llc.html.py:60
 #: .\rik_proovitöö\templates\establish_llc.html.py:57
 msgid "Add equity"
 msgstr "Lisa osalus"
+
+#: .\rik_proovitöö\templates\edit_llc.html.py:61
+msgid "Save changes"
+msgstr "Salvesta muudatused"
+
+#: .\rik_proovitöö\templates\establish_llc.html.py:7
+#: .\rik_proovitöö\templates\establish_llc.html.py:58
+msgid "Establish new LLC"
+msgstr "Asuta uus osaühing"
 
 #: .\rik_proovitöö\templates\home.html.py:4
 msgid "Legal entity lookup"
@@ -224,6 +235,10 @@ msgstr "Ettevõtted"
 #: .\rik_proovitöö\templates\home.html.py:31
 msgid "Load more companies"
 msgstr "Laadi rohkem ettevõtteid"
+
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:4
+msgid "Edit"
+msgstr "Muuda"
 
 #: .\rik_proovitöö\templates\legal_entity_detail.html.py:7
 msgid "Birth date"

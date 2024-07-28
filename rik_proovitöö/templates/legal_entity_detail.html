@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n humanize custom_filters %}
 {% block content %}
-    <h2>{{ legal_entity.name }}</h2>
+    <h2>{{ legal_entity.name }} <a href="{% url 'edit_llc' legal_entity.code %}">{% trans 'Edit' %}</a></h2>
     <p>{% trans 'Code' %}: {{ legal_entity.code }}</p>
     {% if legal_entity.is_person %}
         <p>{% trans 'Birth date' %}: {{ legal_entity.creation_date }} ({{ legal_entity.creation_date|timesince }})</p>

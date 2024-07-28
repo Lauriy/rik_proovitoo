@@ -66,3 +66,29 @@ def establish_llc(request):
         form.equity_formset = formset
 
     return TemplateResponse(request, 'establish_llc.html', {'form': form, 'formset': formset})
+
+
+def edit_llc(request, code):
+    legal_entity = get_object_or_404(LegalEntity, code=code)
+    if request.method == 'POST':
+        form = LegalEntityForm(request.POST, instance=legal_entity, exclude_is_person=True)
+        formset = PublicEquityFormSet(request.POST, instance=legal_entity)
+        form.equity_formset = formset
+
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            instances = formset.save(commit=False)
+            for instance in instances:
+                if not instance.pk:  # New equity holder
+                    instance.is_founding = False
+                instance.save()
+            formset.save_m2m()
+
+            return redirect('legal_entity_detail', code=legal_entity.code)
+    else:
+        form = LegalEntityForm(instance=legal_entity, exclude_is_person=True)
+        formset = PublicEquityFormSet(instance=legal_entity)
+        form.equity_formset = formset
+
+    return TemplateResponse(request, 'edit_llc.html', {'form': form, 'formset': formset,
+                                                       'legal_entity': legal_entity})
