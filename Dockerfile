@@ -27,6 +27,12 @@ RUN pip install -r requirements.test.txt
 
 FROM base AS production
 
-RUN apt-get update && apt-get install uwsgi -y
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    libpcre3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install uwsgi
 
 COPY uwsgi.ini ./
