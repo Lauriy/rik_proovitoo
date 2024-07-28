@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-25 16:33+0000\n"
+"POT-Creation-Date: 2024-07-28 23:57+0300\n"
 "PO-Revision-Date: 2024-07-21 06:35+0000\n"
 "Last-Translator: Lauri Elias <laurileet@gmail.com>\n"
 "Language-Team: Lauri Elias <laurileet@gmail.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: rik_proovitöö/admin.py:46 rik_proovitöö/forms.py:62
+#: .\rik_proovitöö\admin.py:46 .\rik_proovitöö\forms.py:62
 #, python-format
 msgid ""
 "Total equity holdings (%(total_equity)s) do not match the company's capital "
@@ -27,188 +27,232 @@ msgstr ""
 "Osaluste summa (%(total_equity)s) ei klapi ettevõtte osakapitaliga "
 "(%(capital)s)"
 
-#: rik_proovitöö/forms.py:11
+#: .\rik_proovitöö\forms.py:11
 msgid "Query"
 msgstr "Päring"
 
-#: rik_proovitöö/forms.py:19
-#: rik_proovitöö/templates/legal_entity_detail.html:47
+#: .\rik_proovitöö\forms.py:19
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:47
 msgid "Name"
 msgstr "Nimi"
 
-#: rik_proovitöö/forms.py:20
-#: rik_proovitöö/templates/legal_entity_detail.html:5
-#: rik_proovitöö/templates/legal_entity_detail.html:48
+#: .\rik_proovitöö\forms.py:20
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:5
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:48
 msgid "Code"
 msgstr "Kood"
 
-#: rik_proovitöö/forms.py:21
-#: rik_proovitöö/templates/legal_entity_detail.html:36
+#: .\rik_proovitöö\forms.py:21
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:36
 msgid "Creation date"
 msgstr "Asutamise kuupäev"
 
-#: rik_proovitöö/forms.py:22
-#: rik_proovitöö/templates/legal_entity_detail.html:39
+#: .\rik_proovitöö\forms.py:22
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:39
 msgid "Capital"
 msgstr "Kapital"
 
-#: rik_proovitöö/forms.py:23
+#: .\rik_proovitöö\forms.py:23
 msgid "Is person"
 msgstr "On inimene"
 
-#: rik_proovitöö/forms.py:44
+#: .\rik_proovitöö\forms.py:44
 msgid "Personal codes must be 11 digits long"
 msgstr "Isikukood peab olema 11-kohaline arv"
 
-#: rik_proovitöö/forms.py:47
+#: .\rik_proovitöö\forms.py:47
 msgid "Personal code check digit is incorrect"
 msgstr "Isikukoodi kontrollnumber ei ole õige"
 
-#: rik_proovitöö/forms.py:52
+#: .\rik_proovitöö\forms.py:52
 msgid "Business codes must be 7 digits long"
 msgstr "Äriregistri kood peab olema 7-kohaline arv"
 
-#: rik_proovitöö/forms.py:54
+#: .\rik_proovitöö\forms.py:54
 msgid "Businesses must have an establishment date specified"
 msgstr "Osaühingutele peab määrama asutamiskuupäeva"
 
-#: rik_proovitöö/forms.py:56
+#: .\rik_proovitöö\forms.py:56
 #, python-format
 msgid "Businesses must have at least %(min_capital)s capital"
 msgstr "Osaühingutel peab olema vähemalt %(min_capital)s eurot kapitali"
 
-#: rik_proovitöö/forms.py:73
+#: .\rik_proovitöö\forms.py:73 .\rik_proovitöö\forms.py:84
 msgid "Stakeholder"
 msgstr "Osanik"
 
-#: rik_proovitöö/forms.py:74
+#: .\rik_proovitöö\forms.py:74 .\rik_proovitöö\forms.py:85
 msgid "Value"
 msgstr "Väärtus"
 
-#: rik_proovitöö/forms.py:75
+#: .\rik_proovitöö\forms.py:75 .\rik_proovitöö\forms.py:86
 msgid "Is founding"
 msgstr "On asutav"
 
-#: rik_proovitöö/models.py:17
+#: .\rik_proovitöö\models.py:11
+msgid "created at"
+msgstr "loomisaeg"
+
+#: .\rik_proovitöö\models.py:12
+msgid "updated at"
+msgstr "uuendamiskuuaeg"
+
+#: .\rik_proovitöö\models.py:17
 msgid "Legal entities cannot be established into the future"
 msgstr "Juriidilisi isikuid ei saa registreerida tulevikku"
 
-#: rik_proovitöö/models.py:36
+#: .\rik_proovitöö\models.py:24
+msgid "name"
+msgstr ""
+
+#: .\rik_proovitöö\models.py:32
+msgid "code"
+msgstr ""
+
+#: .\rik_proovitöö\models.py:38
+msgid "creation date"
+msgstr "loomisaeg"
+
+#: .\rik_proovitöö\models.py:43
+msgid "capital"
+msgstr "kapital"
+
+#: .\rik_proovitöö\models.py:47
+msgid "is person"
+msgstr "on inimene"
+
+#: .\rik_proovitöö\models.py:54
 msgid "Legal entity"
 msgstr "Juriidiline isik"
 
-#: rik_proovitöö/models.py:37
+#: .\rik_proovitöö\models.py:55
 msgid "Legal entities"
 msgstr "Juriidilised isikud"
 
-#: rik_proovitöö/models.py:54
+#: .\rik_proovitöö\models.py:67
+msgid "stakeholder"
+msgstr "osanik"
+
+#: .\rik_proovitöö\models.py:73
+msgid "company"
+msgstr "ettevõte"
+
+#: .\rik_proovitöö\models.py:76
+msgid "value"
+msgstr "väärtus"
+
+#: .\rik_proovitöö\models.py:80
+msgid "is founding"
+msgstr "on asutav"
+
+#: .\rik_proovitöö\models.py:87
 msgid "Equity"
 msgstr "Osalus"
 
-#: rik_proovitöö/models.py:55
+#: .\rik_proovitöö\models.py:88
 msgid "Holdings"
 msgstr "Osalused"
 
-#: rik_proovitöö/templates/base.html:5
+#: .\rik_proovitöö\templates\base.html.py:5
 msgid "Homework assignment for a RIK job application"
 msgstr "RIK'i tööpakkumise kodune ülesanne"
 
-#: rik_proovitöö/templates/base.html:16
+#: .\rik_proovitöö\templates\base.html.py:16
 msgid "Homework"
 msgstr "Kodutöö"
 
-#: rik_proovitöö/templates/base.html:22
+#: .\rik_proovitöö\templates\base.html.py:22
 msgid "Homepage"
 msgstr "Avaleht"
 
-#: rik_proovitöö/templates/base.html:27
+#: .\rik_proovitöö\templates\base.html.py:27
 msgid "Establish an LLC"
 msgstr "Asuta osaühing"
 
-#: rik_proovitöö/templates/base.html:43
+#: .\rik_proovitöö\templates\base.html.py:43
 msgid "Change language"
 msgstr "Muuda keelt"
 
-#: rik_proovitöö/templates/establish_llc.html:7
-#: rik_proovitöö/templates/establish_llc.html:58
+#: .\rik_proovitöö\templates\establish_llc.html.py:7
+#: .\rik_proovitöö\templates\establish_llc.html.py:58
 msgid "Establish new LLC"
 msgstr "Asuta uus osaühing"
 
-#: rik_proovitöö/templates/establish_llc.html:24
+#: .\rik_proovitöö\templates\establish_llc.html.py:24
 msgid "LLC Details"
 msgstr "Osaühingu andmed"
 
-#: rik_proovitöö/templates/establish_llc.html:37
-#: rik_proovitöö/templates/legal_entity_detail.html:9
-#: rik_proovitöö/templates/legal_entity_detail.html:43
+#: .\rik_proovitöö\templates\establish_llc.html.py:37
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:9
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:43
 msgid "Equities"
 msgstr "Osalused"
 
-#: rik_proovitöö/templates/establish_llc.html:57
+#: .\rik_proovitöö\templates\establish_llc.html.py:57
 msgid "Add equity"
 msgstr "Lisa osalus"
 
-#: rik_proovitöö/templates/home.html:4
+#: .\rik_proovitöö\templates\home.html.py:4
 msgid "Legal entity lookup"
 msgstr "Juriidilise isiku otsing"
 
-#: rik_proovitöö/templates/home.html:7
+#: .\rik_proovitöö\templates\home.html.py:7
 msgid "Search"
 msgstr "Otsi"
 
-#: rik_proovitöö/templates/home.html:9
+#: .\rik_proovitöö\templates\home.html.py:9
 msgid "Search results"
 msgstr "Tulemused"
 
-#: rik_proovitöö/templates/home.html:10
+#: .\rik_proovitöö\templates\home.html.py:10
 msgid "People"
 msgstr "Inimesed"
 
-#: rik_proovitöö/templates/home.html:15
-#: rik_proovitöö/templates/home.html:27
+#: .\rik_proovitöö\templates\home.html.py:15
+#: .\rik_proovitöö\templates\home.html.py:27
 msgid "No results found"
 msgstr "Tulemusi pole"
 
-#: rik_proovitöö/templates/home.html:19
+#: .\rik_proovitöö\templates\home.html.py:19
 msgid "Load more people"
 msgstr "Laadi rohkem inimesi"
 
-#: rik_proovitöö/templates/home.html:22
+#: .\rik_proovitöö\templates\home.html.py:22
 msgid "Companies"
 msgstr "Ettevõtted"
 
-#: rik_proovitöö/templates/home.html:31
+#: .\rik_proovitöö\templates\home.html.py:31
 msgid "Load more companies"
 msgstr "Laadi rohkem ettevõtteid"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:7
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:7
 msgid "Birth date"
 msgstr "Sünnikuupäev"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:13
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:13
 msgid "Company name"
 msgstr "Ettevõtte nimi"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:14
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:14
 msgid "Company code"
 msgstr "Ettevõtte kood"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:15
-#: rik_proovitöö/templates/legal_entity_detail.html:49
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:15
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:49
 msgid "Equity value"
 msgstr "Osaluse väärtus"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:16
-#: rik_proovitöö/templates/legal_entity_detail.html:50
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:16
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:50
 msgid "Percentage"
 msgstr "Protsent"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:17
-#: rik_proovitöö/templates/legal_entity_detail.html:51
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:17
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:51
 msgid "Is founder"
 msgstr "On asutaja"
 
-#: rik_proovitöö/templates/legal_entity_detail.html:29
-#: rik_proovitöö/templates/legal_entity_detail.html:63
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:29
+#: .\rik_proovitöö\templates\legal_entity_detail.html.py:63
 msgid "Yes,No"
 msgstr "Jah,Ei"

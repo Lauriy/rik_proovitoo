@@ -8,8 +8,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CreatedUpdatedMixin:
-    created_at = DateTimeField(auto_now_add=True)
-    updated_at = DateTimeField(auto_now=True)
+    created_at = DateTimeField(auto_now_add=True, verbose_name=_('created at'))
+    updated_at = DateTimeField(auto_now=True, verbose_name=_('updated at'))
 
 
 def no_future_date(value):
@@ -18,16 +18,34 @@ def no_future_date(value):
 
 
 class LegalEntity(Model, CreatedUpdatedMixin):
-    name = CharField(max_length=100, validators=[
-        MinLengthValidator(3),
-    ])
-    code = BigIntegerField(validators=[
-        MinValueValidator(1000000),  # 7 digits is the minimum for OÜ-s
-        MaxValueValidator(99999999999),  # 11 digits is the maximum for personal codes
-    ], unique=True)
-    creation_date = DateField(validators=[no_future_date], null=True, blank=True)
-    capital = IntegerField(blank=True, null=True)  # People don't have this
-    is_person = BooleanField(default=False)
+    name = CharField(
+        max_length=100,
+        validators=[MinLengthValidator(3)],
+        verbose_name=_('name')
+    )
+    code = BigIntegerField(
+        validators=[
+            MinValueValidator(1000000),  # 7 digits is the minimum for OÜ-s
+            MaxValueValidator(99999999999),  # 11 digits is the maximum for personal codes
+        ],
+        unique=True,
+        verbose_name=_('code')
+    )
+    creation_date = DateField(
+        validators=[no_future_date],
+        null=True,
+        blank=True,
+        verbose_name=_('creation date')
+    )
+    capital = IntegerField(  # People don't have this
+        blank=True,
+        null=True,
+        verbose_name=_('capital')
+    )
+    is_person = BooleanField(
+        default=False,
+        verbose_name=_('is person')
+    )
 
     def __str__(self):
         return f'{self.name} ({self.code})'
@@ -42,10 +60,25 @@ class LegalEntity(Model, CreatedUpdatedMixin):
 
 
 class Equity(Model, CreatedUpdatedMixin):
-    stakeholder = ForeignKey('LegalEntity', on_delete=CASCADE, related_name='holdings')
-    company = ForeignKey('LegalEntity', on_delete=CASCADE, related_name='stakes')
-    value = IntegerField()
-    is_founding = BooleanField(default=True)
+    stakeholder = ForeignKey(
+        'LegalEntity',
+        on_delete=CASCADE,
+        related_name='holdings',
+        verbose_name=_('stakeholder')
+    )
+    company = ForeignKey(
+        'LegalEntity',
+        on_delete=CASCADE,
+        related_name='stakes',
+        verbose_name=_('company')
+    )
+    value = IntegerField(
+        verbose_name=_('value')
+    )
+    is_founding = BooleanField(
+        default=True,
+        verbose_name=_('is founding')
+    )
 
     def __str__(self):
         return f'{self.stakeholder.name} - {self.company.name}'
