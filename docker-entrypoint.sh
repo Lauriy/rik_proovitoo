@@ -3,19 +3,22 @@ set -e
 
 python manage.py migrate --noinput
 
-if [ "$DJANGO_ENV" = "development" ]; then
-    python manage.py loaddata rik_proovitöö/fixtures/superuser.json &&
-    python manage.py loaddata rik_proovitöö/fixtures/legal_entity.json &&
+case "$DJANGO_ENV" in
+  "development")
+    python manage.py loaddata rik_proovitöö/fixtures/superuser.json
+    python manage.py loaddata rik_proovitöö/fixtures/legal_entity.json
     python manage.py loaddata rik_proovitöö/fixtures/equity.json
-    python manage.py runserver 0.0.0.0:8000
-fi
-
-if [ "$DJANGO_ENV" = "test" ]; then
-    pytest
-fi
-
-if [ "$DJANGO_ENV" = "production" ]; then
+    exec python manage.py runserver 0.0.0.0:8000
+    ;;
+  "test")
+    exec pytest
+    ;;
+  "production")
     python manage.py collectstatic --noinput
-    uwsgi --ini /home/docker/rik_proovitöö/uwsgi.ini
-fi
-
+    exec uwsgi --ini /home/docker/rik_proovitöö/uwsgi.ini
+    ;;
+  *)
+    echo "DJANGO_ENV must be set to 'development', 'test', or 'production'"
+    exit 1
+    ;;
+esac

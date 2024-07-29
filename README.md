@@ -10,7 +10,7 @@ https://rik.indoorsman.ee
 ## Local instance via docker-compose
 
 ```bash
-    docker compose up -d postgres rik_proovitoo_dev
+    docker compose --profile dev up
 ```
 Visit localhost:8000
 
@@ -47,7 +47,7 @@ Browse the coverage report: file:///home/lauri/PycharmProjects/rik_proovitoo/htm
 ## Running tests inside a Docker container
 
 ```bash
-    docker compose up -d postgres rik_proovitoo_test
+    docker compose --profile test up
 ```
 
 ## Build Docker image

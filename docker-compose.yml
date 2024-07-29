@@ -1,5 +1,6 @@
 services:
   postgres:
+    profiles: ["dev", "test", "prod"]
     image: postgres:16-alpine
     container_name: rik_proovitoo_postgres
     ports:
@@ -11,8 +12,14 @@ services:
       - POSTGRES_INITDB_ARGS=--data-checksums
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U rik_proovitöö" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   rik_proovitoo_dev:
+    profiles: ["dev"]
     build:
       context: .
       target: development
@@ -23,34 +30,33 @@ services:
     volumes:
       - .:/home/docker/rik_proovitöö
     environment:
-      - PYTHONUNBUFFERED=1
       - DJANGO_ENV=development
     depends_on:
       - postgres
 
   rik_proovitoo_test:
+    profiles: ["test"]
     build:
       context: .
       target: development
     image: laurielias/rik_proovitoo:test
     container_name: rik_proovitoo_test
     environment:
-      - PYTHONUNBUFFERED=1
       - DJANGO_ENV=test
     depends_on:
       - postgres
     command: pytest
 
   rik_proovitoo_prod:
+    profiles: ["prod"]
     build:
       context: .
       target: production
     image: laurielias/rik_proovitoo:latest
     container_name: rik_proovitoo_prod
     volumes:
-      - /home/rik/rik_proovitöö/run:/home/docker/rik_proovitöö/run
+      - ./run:/home/docker/rik_proovitöö/run
     environment:
-      - PYTHONUNBUFFERED=1
       - DJANGO_ENV=production
     depends_on:
       - postgres
